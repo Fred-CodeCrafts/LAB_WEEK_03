@@ -25,6 +25,13 @@ class DetailFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
+        setCoffeeData(coffeeId)
+    }
+
+
     fun setCoffeeData(id: Int) {
         when (id) {
             R.id.affogato -> {
@@ -43,7 +50,14 @@ class DetailFragment : Fragment() {
     }
 
     companion object {
-        @JvmStatic
-        fun newInstance() = DetailFragment()
+        private const val COFFEE_ID = "COFFEE_ID"
+
+        fun newInstance(coffeeId: Int) =
+            DetailFragment().apply {
+                arguments = Bundle().apply {
+                    putInt(COFFEE_ID, coffeeId)
+                }
+            }
     }
+
 }
