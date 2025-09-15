@@ -43,5 +43,19 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="@string/latte_title" />
+
+        <TextView
+            android:id="@+id/creamcup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/creamcup_title" />
+
+        <TextView
+            android:id="@+id/matchaoverload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="@string/matchaoverload_title" />
     </LinearLayout>
 </ScrollView>

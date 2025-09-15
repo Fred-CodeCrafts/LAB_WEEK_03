@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 
 class DetailFragment : Fragment() {
 
@@ -13,10 +15,6 @@ class DetailFragment : Fragment() {
         get() = view?.findViewById(R.id.coffee_title)
     private val coffeeDesc: TextView?
         get() = view?.findViewById(R.id.coffee_desc)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +25,19 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Ambil id kopi yang dikirim dari ListFragment
         val coffeeId = arguments?.getInt(COFFEE_ID, 0) ?: 0
         setCoffeeData(coffeeId)
+
+        // Setup tombol back pakai NavController
+        val backButton = view.findViewById<Button>(R.id.btnBack)
+        backButton.setOnClickListener {
+            view.findNavController().navigate(R.id.action_detailFragment_to_listFragment)
+        }
     }
 
-
-    fun setCoffeeData(id: Int) {
+    private fun setCoffeeData(id: Int) {
         when (id) {
             R.id.affogato -> {
                 coffeeTitle?.text = getString(R.string.affogato_title)
@@ -45,6 +50,14 @@ class DetailFragment : Fragment() {
             R.id.latte -> {
                 coffeeTitle?.text = getString(R.string.latte_title)
                 coffeeDesc?.text = getString(R.string.latte_desc)
+            }
+            R.id.creamcup -> {
+                coffeeTitle?.text = getString(R.string.creamcup_title)
+                coffeeDesc?.text = getString(R.string.creamcup_desc)
+            }
+            R.id.matchaoverload -> {
+                coffeeTitle?.text = getString(R.string.matchaoverload_title)
+                coffeeDesc?.text = getString(R.string.matchaoverload_desc)
             }
         }
     }
@@ -59,5 +72,4 @@ class DetailFragment : Fragment() {
                 }
             }
     }
-
 }

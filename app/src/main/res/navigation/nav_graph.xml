@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/coffeeList">
+
+    <!-- ListFragment -->
+    <fragment
+        android:id="@+id/coffeeList"
+        android:name="com.fredcodecrafts.lab_week_03.ListFragment"
+        android:label="List"
+        tools:layout="@layout/fragment_list">
+
+        <!-- 👉 Action: List -> Detail -->
+        <action
+            android:id="@+id/action_listFragment_to_detailFragment"
+            app:destination="@id/coffeeDetail" />
+    </fragment>
+
+    <!-- DetailFragment -->
+    <fragment
+        android:id="@+id/coffeeDetail"
+        android:name="com.fredcodecrafts.lab_week_03.DetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_detail">
+
+        <!-- 👉 Action: Detail -> List (opsional back button custom) -->
+        <action
+            android:id="@+id/action_detailFragment_to_listFragment"
+            app:destination="@id/coffeeList" />
+    </fragment>
+
+</navigation>
